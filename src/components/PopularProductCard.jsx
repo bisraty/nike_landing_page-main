@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { star } from "../assets/icons";
 
 const PopularProductCard = ({ imgURL, name, price }) => {
+  const navigate = useNavigate();
   return (
-    <div className='flex flex-1 flex-col w-full max-sm:w-full'>
+    <div
+      onClick={() => {
+        navigate("/product/detail");
+      }}
+      className='flex flex-1 flex-col w-full max-sm:w-full'
+    >
       <img src={imgURL} alt={name} className='w-[282px] h-[282px]' />
       <div className='mt-8 flex justify-start gap-2.5'>
         <img src={star} alt='rating icon' width={24} height={24} />
