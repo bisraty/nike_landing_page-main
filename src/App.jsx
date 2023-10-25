@@ -1,44 +1,34 @@
-import { Nav } from "./components";
-import {
-  CustomerReviews,
-  Footer,
-  Hero,
-  PopularProducts,
-  Services,
-  SpecialOffer,
-  Subscribe,
-  SuperQuality,
-} from "./sections";
+import Home from "./Page/Home";
+import { Route, Routes } from "react-router-dom";
+import ProductsPage from "./Page/ProductsPage";
+import ScrollToTop from "./Page/ScrollToTop";
+import DetailPage from "./Page/DetailPage";
+import AboutUsPage from "./Page/AboutUsPage";
+import { Suspense } from "react";
 
 const App = () => {
   return (
-    <main className='relative'>
-      <Nav />
-      <section className='xl:padding-l wide:padding-r padding-b'>
-        <Hero />
-      </section>
-      <section className='padding'>
-        <PopularProducts />
-      </section>
-      <section className='padding'>
-        <SuperQuality />
-      </section>
-      <section className='padding-x py-10'>
-        <Services />
-      </section>
-      <section className='padding'>
-        <SpecialOffer />
-      </section>
-      <section className='bg-pale-blue padding'>
-        <CustomerReviews />
-      </section>
-      <section className='padding-x sm:py-32 py-16 w-full'>
-        <Subscribe />
-      </section>
-      <section className=' bg-black padding-x padding-t pb-8'>
-        <Footer />
-      </section>
-    </main>
+    <div>
+      <Suspense
+        fallback={
+          <div className='flex flex-col justify-center items-center'>
+            <h1 className='text-[25px] mt-[20vh] text-blue '>Loading ...</h1>
+          </div>
+        }
+      >
+        <ScrollToTop />
+
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/products' element={<ProductsPage />} />
+          <Route path='/product/detail' element={<DetailPage />} />
+          <Route path='/about-us' element={<AboutUsPage />} />
+
+          <Route path='*' element={<Home />} />
+        </Routes>
+      </Suspense>
+    </div>
   );
 };
 
