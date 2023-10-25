@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { arrowRight } from "../assets/icons";
 import { offer } from "../assets/images";
 import { Button } from "../components";
 
 const SpecialOffer = () => {
+  const navigate = useNavigate();
   return (
     <section className='flex justify-between items-center max-xl:flex-col-reverse gap-10 max-container'>
       <div className='flex-1'>
@@ -30,7 +32,13 @@ const SpecialOffer = () => {
           nothing short of exceptional.
         </p>
         <div className='mt-11 flex flex-wrap gap-4'>
-          <Button label='Shop now' iconURL={arrowRight} />
+          <div
+            onClick={() => {
+              navigate("/products");
+            }}
+          >
+            <Button label='Shop now' iconURL={arrowRight} />
+          </div>
           <Button
             label='Learn more'
             backgroundColor='bg-white'
